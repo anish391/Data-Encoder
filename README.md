@@ -1,4 +1,4 @@
-# Data Encoder
+# Data Encoder/Decoder
 
 Python Version: 3.x
 
