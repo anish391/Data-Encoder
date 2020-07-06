@@ -9,9 +9,9 @@ ed = EncoderDecoder()
 # Set up parser object and arguments.
 parser = argparse.ArgumentParser(description='Encode/Decode your data.')
 parser.add_argument('-e', '--encode', metavar='string', type=str, nargs='+',
-										help='A string to encode.')
+										help='Pass string to encode.')
 parser.add_argument('-d','--decode', metavar='int', type=int, nargs='+',
-                    help='Array of integers to decode into a sentence.')
+                    help='Pass array of integers to decode.')
 # Handling no input.
 if len(sys.argv)==1:
     parser.print_help()
