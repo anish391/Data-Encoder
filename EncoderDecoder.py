@@ -41,8 +41,10 @@ class EncoderDecoder:
 		# Ensure encoded_array contains only integers
 		for encoded_value in encoded_array:
 	 		if not isinstance(encoded_value, int):
-	 			print("Invalid input.")
 	 			print("Please enter only integer values for encoded array.")
+	 			raise
+	 		elif encoded_value<0:
+	 			print("Please enter positive values for encoded array.")
 	 			raise
 
 		sentence = ""
