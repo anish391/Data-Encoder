@@ -1,43 +1,29 @@
 from EncoderDecoder import EncoderDecoder
+import argparse
+import sys
 
 ed = EncoderDecoder()
 
-input_1 = "1=> Check if decoder returns original string.\n"
-input_2 = "2=> Get help.\n"
-input_3 = "3=> Exit.\n"
-message = "\nEnter input:\n"+input_1+""+input_2+""+input_3
+parser = argparse.ArgumentParser(description='Encode/Decode your data.')
+parser.add_argument('-e', '--encode', metavar='string', type=str, nargs='+',
+										help='A string to encode.')
+parser.add_argument('-d','--decode', metavar='int', type=int, nargs='+',
+                    help='Array of integers to decode into a sentence.')
 
-print(message)
+if len(sys.argv)==1:
+    parser.print_help()
+    # parser.print_usage() # for just the usage line
+    parser.exit()
 
-while(True):
-	while(True):
-		
-		user_input = int(input())
-		if user_input in (1,2,3):
-			break
-		else:
-			print("Invalid input")
-
-	if(user_input==1):
-		string_to_encode = input("Enter string to encode.\n")
-		string_to_compare = input("Enter string to compare it with it.\n")
-		try:
-			encoded_array = ed.encode(string_to_encode)
-			decoded_string = ed.decode(encoded_array)
-			strings_match = decoded_string == string_to_compare
-			if strings_match:
-				print("Encoded/decoded string matches input string.\n")
-			else:
-				print("Encoded/decoded string does not match input string.\n")
-			print("Press 1 to compare more strings")
-		except:
-			continue
-	
-	elif(user_input==2):
-		print(message)
-	
-	elif(user_input==3):
-		print("Goodbye!")
-		break
-		
-	
+args = parser.parse_args()
+if(args.decode):
+	try:
+		print(ed.decode(args.decode))
+	except:
+		print("Invalid Decoder input.")
+if(args.encode):
+	try:
+		encoded_list = ed.encode(' '.join(args.encode))
+		print(*encoded_list)
+	except:
+		print("Invalid Encoder input.")
